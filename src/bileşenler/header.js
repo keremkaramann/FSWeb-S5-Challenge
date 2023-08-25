@@ -42,15 +42,14 @@ const headerEkleyici = (secici) => {
   //
   // İPUCU: querySelector bir string alabilir (bknz: querySelector("#wrapper"))
   // fakat aynı zamanda bir değişken de alabilir (bknz: querySelector(secici))
+
   const selector = document.querySelector(secici);
-  return selector;
+  const createDiv = Header(
+    "SAMUEL L. IPSUM",
+    "25 Ağustos Cuma",
+    "The path of the righteous man is beset on all sides by the iniquities of the selfish and the tyranny of evil men."
+  );
+  selector.append(createDiv);
 };
-const createDiv = Header(
-  "SAMUEL L. IPSUM",
-  "25 Ağustos Cuma",
-  "The path of the righteous man is beset on all sides by the iniquities of the selfish and the tyranny of evil men."
-);
-const addToDiv = headerEkleyici(".header-container");
-addToDiv.append(createDiv);
 
 export { Header, headerEkleyici };

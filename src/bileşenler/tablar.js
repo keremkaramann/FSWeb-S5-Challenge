@@ -35,21 +35,18 @@ const tabEkleyici = (secici) => {
   // Yanıtın içindeki konu dizisini bulun ve Tablar bileşenini kullanarak tabları oluşturun.
   // Tabları, fonksiyona iletilen seçiciyle eşleşen DOM'daki öğeye ekleyin.
   //
+  const url = "http://localhost:5001/api/konular";
   const selector = document.querySelector(secici);
-  return selector;
+
+  axios
+    .get(url)
+    .then((resp) => {
+      const allTabs = Tablar(resp.data.konular);
+      selector.append(allTabs);
+    })
+    .catch((err) => {
+      console.log("sorun oluştu axios", err);
+    });
 };
-
-const url = "http://localhost:5001/api/konular";
-
-axios
-  .get(url)
-  .then((resp) => {
-    const allTabs = Tablar(resp.data.konular);
-    const tabAdd = tabEkleyici(".tabs-container");
-    tabAdd.append(allTabs);
-  })
-  .catch((err) => {
-    console.log("sorun oluştu axios", err);
-  });
 
 export { Tablar, tabEkleyici };
